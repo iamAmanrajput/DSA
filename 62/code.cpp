@@ -31,7 +31,7 @@ bool isPossibleSolution(int arr[], int b, int s, int sol, int n)
         {
             // Allocate this book to next student
             count++;
-            pageSum = arr[i];
+            pageSum = arr[i]; // ye new student ko allocate kar rha pagesum ko reset karke
 
             // If students exceed the limit, return false
             if (count > s)
