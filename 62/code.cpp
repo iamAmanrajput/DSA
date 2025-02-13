@@ -1,78 +1,75 @@
-// Book Allocation Proble -- GFG
-
 #include <iostream>
 using namespace std;
 
-int findMax(int arr[], int n)
+// Find the total sum of pages
+int sumOfPages(int arr[], int n)
 {
-    int maxVal = arr[0];
-    for (int i = 1; i < n; i++)
-    {
-        if (arr[i] > maxVal)
-        {
-            maxVal = arr[i];
-        }
-    }
-    return maxVal;
-}
-
-int findSum(int arr[], int n)
-{
-    int sum = 0;
+    int totalPages = 0;
     for (int i = 0; i < n; i++)
     {
-        sum += arr[i];
+        totalPages += arr[i];
     }
-    return sum;
+    return totalPages;
 }
 
-bool isPossibleSolution(int arr[], int n, int k, int sol)
+// Check if the current mid (sol) can be a possible solution
+bool isPossibleSolution(int arr[], int b, int s, int sol, int n)
 {
     int pageSum = 0;
-    int count = 1;
+    int count = 1; // Start with first student
+
     for (int i = 0; i < n; i++)
     {
         if (arr[i] > sol)
-        {
+        { // If any book has pages more than sol, allocation is impossible
             return false;
         }
+
         if (pageSum + arr[i] > sol)
         {
+            // Allocate this book to next student
             count++;
             pageSum = arr[i];
-            if (count > k)
+
+            // If students exceed the limit, return false
+            if (count > s)
             {
                 return false;
             }
         }
         else
         {
-            pageSum += arr[i];
+            pageSum += arr[i]; // Continue adding pages to the current student
         }
     }
     return true;
 }
 
-int findPages(int arr[], int n, int k)
+// Find minimum number of pages allocated to a student
+int findPages(int arr[], int b, int s, int n)
 {
-    if (k > n)
+    // If students are more than books, allocation isn't possible
+    if (s > b)
     {
         return -1;
     }
-    int start = findMax(arr, n);
-    int end = findSum(arr, n);
+
+    int start = 0;
+    int end = sumOfPages(arr, n);
     int ans = -1;
+
     while (start <= end)
     {
-        int mid = start + (end - start) / 2;
-        if (isPossibleSolution(arr, n, k, mid))
+        int mid = start + (end - start) / 2; // Fix: Correct way to find mid
+
+        if (isPossibleSolution(arr, b, s, mid, n))
         {
-            ans = mid;
-            end = mid - 1;
+            ans = mid;     // Store the valid minimum pages
+            end = mid - 1; // Try to minimize the answer
         }
         else
         {
-            start = mid + 1;
+            start = mid + 1; // Increase the value of mid
         }
     }
     return ans;
@@ -81,8 +78,11 @@ int findPages(int arr[], int n, int k)
 int main()
 {
     int arr[] = {12, 34, 67, 90};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int k = 2; // Number of students
-    cout << "Minimum number of pages: " << findPages(arr, n, k) << endl;
+    int size = sizeof(arr) / sizeof(int);
+    int students = 2;
+    int noOfBooks = 4;
+
+    int result = findPages(arr, noOfBooks, students, size);
+    cout << "Minimum pages allocated to a student: " << result << endl;
     return 0;
 }
