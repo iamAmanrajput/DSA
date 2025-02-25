@@ -41,8 +41,10 @@ int findMinDifference(vector<string> &timePoints)
 
     // Handle the circular difference (between last and first time)
     // yaha faste hai log
-    int lastDiff = (minutes[0] + 1440) - minutes[minutes.size() - 1]; // Time gap over midnight
-    mini = min(mini, lastDiff);                                       // Update minimum difference
+    int lastDiff1 = (minutes[0] + 1440) - minutes[minutes.size() - 1]; // Time gap over midnight
+    int lastDiff2 = minutes[minutes.size() - 1] - minutes[0];
+    int lastDiff = min(lastDiff1, lastDiff2);
+    mini = min(mini, lastDiff); // Update minimum difference
 
     return mini; // Return the smallest time difference found
 }
