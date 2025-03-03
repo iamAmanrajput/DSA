@@ -1,5 +1,5 @@
 // group anagram -- (LC)
-// # Approach 1
+// # Approach 1 -- using hash Map
 
 #include <bits/stdc++.h>
 using namespace std;
