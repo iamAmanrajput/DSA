@@ -10,7 +10,7 @@ int main()
 
     char *c = ch;
 
-    cout << c << endl;
+    cout << c << endl;  // ch[0] ka address print hona chahiye tha but puri string print ho gyi
     cout << *c << endl; // first char print hoga
 
     cout << ch << endl;
