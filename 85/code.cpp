@@ -11,7 +11,12 @@ int main()
     char *c = ch;
 
     cout << c << endl;
-    cout << *c << endl;
+    cout << *c << endl; // first char print hoga
+
+    cout << ch << endl;
+    cout << &ch << endl;
+    cout << ch[0] << endl;
+    cout << &c << endl;
 
     return 0;
 }
@@ -19,3 +24,8 @@ int main()
 // output
 // Aman
 // A
+
+// Aman
+// 0x61ff06
+// A
+// 0x61ff00
