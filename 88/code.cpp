@@ -24,6 +24,15 @@ vector<bool> segSieve(int L, int R)
     {
         segSieve[L] = false;
     }
+
+    for (auto prime : basPrimes)
+    {
+        int first_Mul = (L / prime) * prime;
+        if (first_Mul < L)
+        {
+            first_Mul += prime;
+        }
+    }
 }
 
 int main()
