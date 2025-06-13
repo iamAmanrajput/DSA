@@ -22,7 +22,7 @@ void printPermutation(string &str, int i)
         // recursive call
         printPermutation(str, i + 1);
 
-        // backtracking
+        // backtracking -- to recreate the original string
         swap(str[i], str[j]);
     }
 };
