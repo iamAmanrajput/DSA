@@ -32,7 +32,7 @@ int partiton(int *arr, int s, int e)
     while (i < pivotIndex && j > pivotIndex)
     {
         while (arr[i] <= pivotElement)
-        {
+        { // (<=) to handle the same values case
             i++;
         }
         while (arr[j] > pivotElement)
