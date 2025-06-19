@@ -79,8 +79,8 @@ int main()
     // making empty board of nxn
     vector<vector<char>> board(n, vector<char>(n, '-'));
     int col = 0;
-    // 0 -> empty cell
-    // 1 -> Queen at a cell
+    // - -> empty cell
+    // Q -> Queen at a cell
     solve(board, col, n);
     return 0;
 }
