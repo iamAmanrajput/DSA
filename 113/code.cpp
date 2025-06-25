@@ -1,6 +1,6 @@
 // Count Inversion -- Hacker Rank
 //  # Approach 1
-// TC - (N^2)
+// TC - (N^2) 
 
 #include <iostream>
 #include <vector>
