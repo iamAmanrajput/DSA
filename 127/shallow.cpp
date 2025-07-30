@@ -1,5 +1,4 @@
-// Shallow copy
-
+// shallow copy
 #include <iostream>
 using namespace std;
 
@@ -9,13 +8,14 @@ public:
     int x;
     int *y;
 
+    // Parameterized constructor - memory allocate karta hai y ke liye
     abc(int _x, int _y) : x(_x), y(new int(_y)) {}
 
-    // default dumb copy constructor : it does shallow copy
+    // Copy constructor - shallow copy karta hai, i.e. pointer ko copy karta hai
     abc(const abc &obj)
     {
         x = obj.x;
-        y = obj.y;
+        y = obj.y; // Pointer copy hua, dono objects same memory ko point karenge
     }
 
     void print() const
@@ -25,40 +25,56 @@ public:
         cout << "Content of Y (*y) : " << *y << endl
              << endl;
     }
+
+    // Destructor (shallow copy me double delete problem ho sakti hai)
+    ~abc()
+    {
+        // Destructor me delete y karna dangerous ho sakta hai shallow copy ki wajah se
+        // isliye yahan delete nahi kar rahe hain, par real scenario me careful handling chahiye
+    }
 };
 
 int main()
 {
     abc a(1, 2);
-    cout << "Printint a\n";
+    cout << "Printing a\n";
     a.print();
-    // output
-    //     X : 1
-    // PTR Y : 0x1091848
-    // Content of Y (*y) : 2
 
-    // abc b(a);  // Alternate way to call copy constructor
-    abc b = a; // call copy constructor
-    cout << "Printint b\n";
+    abc b = a; // copy constructor call hoga (shallow copy)
+    cout << "Printing b\n";
     b.print();
-    // output
-    //     X : 1
-    // PTR Y : 0x1061848 // pointers are same so y of both a and b points the same address
-    // Content of Y (*y) : 2
 
     *b.y = 20;
-    cout << "Printint b\n";
-    b.print();
-    // output
-    //     X : 1
-    // PTR Y : 0x1061848 // pointers are same
-    // Content of Y (*y) : 20
 
-    cout << "Printint a\n";
+    cout << "After modifying *b.y = 20\n";
+
+    cout << "Printing b\n";
+    b.print();
+
+    cout << "Printing a\n";
     a.print();
-    // output
-    //     X : 1
-    // PTR Y : 0x1061848 // pointers are same
-    // Content of Y (*y) : 20
+
     return 0;
 }
+
+// output
+// Printing a
+// X : 1
+// PTR Y : 0x1021848
+// Content of Y (*y) : 2
+
+// Printing b
+// X : 1
+// PTR Y : 0x1021848
+// Content of Y (*y) : 2
+
+// After modifying *b.y = 20
+// Printing b
+// X : 1
+// PTR Y : 0x1021848
+// Content of Y (*y) : 20
+
+// Printing a
+// X : 1
+// PTR Y : 0x1021848
+// Content of Y (*y) : 20
