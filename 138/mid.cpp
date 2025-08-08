@@ -1,4 +1,4 @@
-// Find middle of Linked List
+// Find middle of Linked List -- (LC)
 
 #include <iostream>
 using namespace std;
@@ -55,7 +55,7 @@ Node *getMiddle(Node *&head)
     }
 
     Node *slow = head;
-    Node *fast = head->next; // even ke case me 30 ko hi answer consider karega 
+    Node *fast = head->next; // even ke case me 30 ko hi answer consider karega
 
     while (slow != NULL && fast != NULL)
     {
