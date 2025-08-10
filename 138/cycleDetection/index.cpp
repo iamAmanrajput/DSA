@@ -1,4 +1,4 @@
-// 141. Linked List Cycle -- (LC)
+// 141. Linked List Cycle II -- (LC)
 // # using Floyd’s Cycle Detection (Tortoise and Hare)
 
 #include <bits/stdc++.h>
