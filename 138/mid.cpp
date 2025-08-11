@@ -57,14 +57,10 @@ Node *getMiddle(Node *&head)
     Node *slow = head;
     Node *fast = head->next; // even ke case me 30 ko hi answer consider karega
 
-    while (slow != NULL && fast != NULL)
+    while (fast && fast->next)
     {
-        fast = fast->next;
-        if (fast != NULL)
-        {
-            fast = fast->next;
-            slow = slow->next;
-        }
+        slow = slow->next;
+        fast = fast->next->next;
     }
     return slow;
 }
