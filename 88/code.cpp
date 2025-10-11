@@ -1,42 +1,76 @@
 // optimized Segmented Sieve
 
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
+// Normal Sieve of Eratosthenes to get primes up to n
+vector<bool> Sieve(int n)
+{
+    vector<bool> isPrime(n + 1, true);
+    isPrime[0] = isPrime[1] = false;
+    for (int i = 2; i * i <= n; i++)
+    {
+        if (isPrime[i])
+        {
+            for (int j = i * i; j <= n; j += i)
+                isPrime[j] = false;
+        }
+    }
+    return isPrime;
+}
+
+// Segmented Sieve from L to R
 vector<bool> segSieve(int L, int R)
 {
-    // get me prime array , i will use it to mark seg sieve
-    vector<bool> sieve = Sieve(sqrt(R));
-    vector<int> basPrimes;
-    for (int i = 0; i < sieve.size(); i++)
+    int limit = sqrt(R);
+    vector<bool> sieve = Sieve(limit);
+
+    vector<int> basePrimes;
+    for (int i = 2; i <= limit; i++)
     {
         if (sieve[i])
+            basePrimes.push_back(i);
+    }
+
+    vector<bool> isPrime(R - L + 1, true);
+
+    if (L == 0)
+    {
+        isPrime[0] = false;
+        if (R >= 1)
+            isPrime[1 - L] = false;
+    }
+    if (L == 1)
+        isPrime[0] = false;
+
+    for (int prime : basePrimes)
+    {
+        // Find the first multiple of prime in [L, R]
+        int start = max(prime * prime, ((L + prime - 1) / prime) * prime);
+
+        for (int j = start; j <= R; j += prime)
         {
-            basPrimes.push_back(i);
+            isPrime[j - L] = false;
         }
     }
 
-    vector<bool> segSieve(R - L + 1, true);
-    if (L == 1 || L == 0)
-    {
-        segSieve[L] = false;
-    }
-
-    for (auto prime : basPrimes)
-    {
-        int first_Mul = (L / prime) * prime;
-        if (first_Mul < L)
-        {
-            first_Mul += prime;
-        }
-    }
+    return isPrime;
 }
 
 int main()
 {
+    int L = 10, R = 50;
+    vector<bool> primes = segSieve(L, R);
+
+    cout << "Primes between " << L << " and " << R << ":\n";
+    for (int i = 0; i <= R - L; i++)
+    {
+        if (primes[i])
+            cout << i + L << " ";
+    }
+    cout << endl;
 
     return 0;
 }
