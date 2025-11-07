@@ -1,3 +1,5 @@
+// GFG Problem - Sort a stack
+
 #include <iostream>
 #include <stack>
 using namespace std;
