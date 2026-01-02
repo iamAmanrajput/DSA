@@ -1,6 +1,6 @@
 // Gfg Problem - Stream First Non-Repeating
 // Time: O(n)
-// Space: O(1) (fixed size frequency array)
+// Space: O(n) (wrost case all element is inserted in queue)
 
 #include <bits/stdc++.h>
 using namespace std;
