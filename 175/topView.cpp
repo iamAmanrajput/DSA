@@ -1,4 +1,6 @@
 // GFG Problem Top View of Binary Tree
+// TC → O(N log N) (map insertion + map find)
+// SC → O(N) (queue + map)
 
 #include <bits/stdc++.h>
 using namespace std;
