@@ -1,4 +1,4 @@
-// Minimum Cost of ropes
+// GFG Problem Minimum Cost of ropes
 
 
 #include <iostream>
