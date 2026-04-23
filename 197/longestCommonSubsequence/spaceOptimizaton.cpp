@@ -1,5 +1,4 @@
 // Leetcode Problem 1143. Longest Common Subsequence
-
 /*
 Space Optimized DP (1D)
 
