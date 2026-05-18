@@ -1,9 +1,11 @@
-// string compression --(LC)
+// Leetcode Problem 443. String Compression
+// Time Complexity 0(N)
+// Space Complexity 0(1)
 
 #include <bits/stdc++.h>
 using namespace std;
 
-// ✅ Function to compress the string
+// Function to compress the string
 int compressString(vector<char> &s)
 {
     int index = 0, count = 1;
@@ -38,8 +40,8 @@ int compressString(vector<char> &s)
         }
     }
 
-    // eske esliye karna pad rha hai bcz humne count to ++ kar diya tha but add nhi kiya tha main string me -- doubt hai to video no -80 , dry run dekho 7.40
-    // ✅ Last character ka handling
+    // esko esliye karna pad rha hai bcz humne count to ++ kar diya tha but add nhi kiya tha main string me -- doubt hai to video no -80 , dry run dekho 7.40
+    // Last character ka handling
     s[index] = prev;
     index++;
     if (count > 1)
@@ -57,7 +59,7 @@ int compressString(vector<char> &s)
     return index; // New compressed size return karo
 }
 
-// ✅ Function to print compressed string
+// Function to print compressed string
 void printCompressedString(vector<char> &chars, int newSize)
 {
     cout << "Compressed characters: ";
@@ -67,11 +69,11 @@ void printCompressedString(vector<char> &chars, int newSize)
     }
     cout << endl;
 
-    // ✅ Print new size
+    // Print new size
     cout << "New size: " << newSize << endl;
 }
 
-// ✅ Main function (Driver Code)
+// Main function (Driver Code)
 int main()
 {
     vector<char> chars = {'a', 'a', 'b', 'b', 'c', 'c', 'c'}; // Example input
