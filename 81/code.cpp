@@ -1,10 +1,10 @@
-// 13. Roman to Integer -- (LC)
+// Leetcode Problem 13. Roman to Integer
 // # simple method -- TC = 0(N)
 
 #include <iostream>
 using namespace std;
 
-// ✅ Function to Convert Single Roman Character to Integer
+// Function to Convert Single Roman Character to Integer
 int convertRomanToInt(char ch)
 {
     if (ch == 'I')
@@ -23,7 +23,7 @@ int convertRomanToInt(char ch)
         return 1000;
 }
 
-// ✅ Function to Convert Full Roman String to Integer
+// Function to Convert Full Roman String to Integer
 int romanToInt(string s)
 {
     int totalNum = 0;
@@ -55,7 +55,7 @@ int romanToInt(string s)
     return totalNum;
 }
 
-// ✅ Main Function
+// Main Function
 int main()
 {
     string roman;
