@@ -1,6 +1,6 @@
 // In Place Merge Sort
-// TC - O(N LOGN)
-// SC - 0(1)
+// TC - O(N log^2 N)
+// SC - 0(log n)
 
 #include <iostream>
 #include <vector>
