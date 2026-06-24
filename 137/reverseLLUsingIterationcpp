@@ -1,4 +1,4 @@
-// Reverse Linked List Using Recursion
+// Reverse Linked List Using Iteration
 #include <iostream>
 using namespace std;
 
