@@ -1,0 +1,85 @@
+// Reverse Linked List Using Recursion
+#include <iostream>
+using namespace std;
+
+// Definition of ListNode
+struct ListNode
+{
+    int val;
+    ListNode *next;
+
+    ListNode() : val(0), next(nullptr) {}
+
+    ListNode(int x) : val(x), next(nullptr) {}
+
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+// Print Linked List
+void printList(ListNode *head)
+{
+    ListNode *temp = head;
+
+    while (temp != nullptr)
+    {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+
+    cout << endl;
+}
+
+// Reverse Linked List (Iterative)
+ListNode *reverseList(ListNode *head)
+{
+    ListNode *prev = nullptr;
+    ListNode *curr = head;
+
+    while (curr != nullptr)
+    {
+        ListNode *forward = curr->next; // save next node
+        curr->next = prev;              // reverse link
+        prev = curr;                    // move prev
+        curr = forward;                 // move curr
+    }
+
+    return prev;
+}
+
+int main()
+{
+    // Creating Linked List: 10 -> 20 -> 30 -> 40 -> NULL
+
+    ListNode *first = new ListNode(10);
+    ListNode *second = new ListNode(20);
+    ListNode *third = new ListNode(30);
+    ListNode *fourth = new ListNode(40);
+
+    first->next = second;
+    second->next = third;
+    third->next = fourth;
+
+    ListNode *head = first;
+
+    cout << "Original Linked List: ";
+    printList(head);
+
+    head = reverseList(head);
+
+    cout << "Reversed Linked List: ";
+    printList(head);
+
+    // Free memory
+    ListNode *temp;
+    while (head != nullptr)
+    {
+        temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    return 0;
+}
+
+// Original Linked List: 10 20 30 40
+// Reversed Linked List: 40 30 20 10
